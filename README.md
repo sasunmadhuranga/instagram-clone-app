@@ -26,25 +26,3 @@ o	Edit/delete comments on your own posts
 o	View saved and shared posts directly from profile
 Tech Stack
 React.js, Node.js, Express.js, MongoDB, Tailwind CSS
-
-Project structure
-Instagram-clone/
-client
-  assets
-  components
-  hooks
-  pages
-  utils
-  App.jsx
-server
-	controllers
-	middleware
-	models
-	routes
-	uploads
-	posts
-	.env
-	app.js
-
-
-
