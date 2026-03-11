@@ -1,5 +1,6 @@
 📸 Instagram Clone – Full-Stack Social Media App (MERN + Tailwind CSS)
 A full-featured Instagram-like social media platform built using the MERN Stack (MongoDB, Express.js, React, Node.js) and Tailwind CSS, offering a clean, responsive user interface and real-time user interaction.
+
 ✨ Features
 •	🔐 Authentication
 o	User registration, login, and logout
