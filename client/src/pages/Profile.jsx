@@ -21,7 +21,7 @@ const Profile = () => {
   const { username } = useParams();
   const loggedInUsername = storedUser?.username;
   const [isFollowing, setIsFollowing] = useState(false);
-
+  const API_URL = process.env.REACT_APP_API_URL;
   
   const isOwnProfile = !username || username === loggedInUsername;
 
@@ -41,7 +41,7 @@ const Profile = () => {
 
   const fetchFollowersAndFollowing = async () => {
     try {
-      const url = isOwnProfile ? "http://localhost:5000/api/users/me" : `http://localhost:5000/api/users/${username}`;
+      const url = isOwnProfile ? `${API_URL}/users/me` : `${API_URL}/users/${username}`;
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -73,7 +73,7 @@ const Profile = () => {
 
   const handleRemoveFollower = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/remove-follower/${id}`, {
+      const res = await fetch(`${API_URL}/users/remove-follower/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ const Profile = () => {
 
   const handleUnfollow = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/unfollow/${id}`, {
+      const res = await fetch(`${API_URL}/users/unfollow/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -119,7 +119,7 @@ const Profile = () => {
 
   const handleFollow = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/follow/${id}`, {
+      const res = await fetch(`${API_URL}/users/follow/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -144,7 +144,7 @@ const Profile = () => {
 
     if (isFollowing) {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/unfollow/${form._id}`, {
+        const res = await fetch(`${API_URL}/users/unfollow/${form._id}`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -166,7 +166,7 @@ const Profile = () => {
     } else {
 
       try {
-        const res = await fetch(`http://localhost:5000/api/users/follow/${form._id}`, {
+        const res = await fetch(`${API_URL}/users/follow/${form._id}`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -190,7 +190,7 @@ const Profile = () => {
 
   const handleToggleSave = async (postId) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/posts/save/${postId}`, {
+    const res = await fetch(`${API_URL}/posts/save/${postId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

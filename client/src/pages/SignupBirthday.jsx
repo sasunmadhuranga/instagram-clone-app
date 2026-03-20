@@ -12,6 +12,7 @@ const SignupBirthday = () => {
   const [message, setMessage] = useState(null);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (!state) {
@@ -42,7 +43,7 @@ const SignupBirthday = () => {
     const birthday = `${year}-${month}-${String(day).padStart(2, '0')}`;
     console.log("Submitting full data:", { ...state, birthday });
     try {
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
+      const res = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...state, birthday }),

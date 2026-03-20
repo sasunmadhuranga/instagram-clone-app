@@ -1,6 +1,8 @@
 import React from "react";
 
 const FollowersModal = ({ followers, onClose, onUnfollow }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white rounded-xl w-full max-w-xl w-[500px] max-h-[80vh] overflow-y-auto p-10 relative">
@@ -25,7 +27,7 @@ const FollowersModal = ({ followers, onClose, onUnfollow }) => {
                       user.photo
                         ? user.photo.startsWith("http")
                           ? user.photo
-                          : `http://localhost:5000${user.photo}`
+                          : `${BASE_URL}${user.photo}`
                         : "/default-avatar.png"
                     }
                     alt={user.username}

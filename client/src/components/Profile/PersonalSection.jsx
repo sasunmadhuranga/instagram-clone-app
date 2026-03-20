@@ -13,6 +13,7 @@ export default function PersonalSection() {
   const [day, setDay] = useState(initialBirthday?.getDate() || '');
   const [month, setMonth] = useState(initialBirthday ? String(initialBirthday.getMonth() + 1).padStart(2, '0') : '');
   const [year, setYear] = useState(initialBirthday?.getFullYear() || '');
+  const API_URL = process.env.REACT_APP_API_URL;
 
 
   const closePopup = () => {
@@ -23,7 +24,7 @@ export default function PersonalSection() {
 
   const handleSaveEmail = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/update-email", {
+      const res = await fetch(`${API_URL}/users/update-email`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +52,7 @@ export default function PersonalSection() {
     const birthday = `${year}-${month}-${String(day).padStart(2, "0")}`;
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/update-birthday", {
+      const res = await fetch(`${API_URL}/users/update-birthday`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

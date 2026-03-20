@@ -13,6 +13,7 @@ const Signup = () => {
   const [message, setMessage] = useState(null);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });

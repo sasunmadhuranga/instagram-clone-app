@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 const useProfile = (token, username) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -24,12 +26,12 @@ const useProfile = (token, username) => {
     const loadProfileData = async () => {
       try {
         const profileUrl = isOwnProfile
-          ? "http://localhost:5000/api/users/me"
-          : `http://localhost:5000/api/users/${username}`;
+          ? `${API_URL}/users/me`
+          : `${API_URL}/users/${username}`;
         
         const postsUrl = isOwnProfile
-          ? "http://localhost:5000/api/posts/my-posts"
-          : `http://localhost:5000/api/posts/user/${username}`;
+          ? `${API_URL}/posts/my-posts`
+          : `${API_URL}/posts/user/${username}`;
 
         const fetches = [
           fetch(profileUrl, {
@@ -42,7 +44,7 @@ const useProfile = (token, username) => {
 
         if (isOwnProfile) {
           fetches.push(
-            fetch("http://localhost:5000/api/posts/saved-posts", {
+            fetch(`${API_URL}/posts/saved-posts`, {
               headers: { Authorization: `Bearer ${token}` },
             })
           );
@@ -64,7 +66,7 @@ const useProfile = (token, username) => {
           email: profileData.email || "",
           bio: profileData.bio || "",
           photo: profileData.photo
-            ? `http://localhost:5000${profileData.photo}`
+            ? `${BASE_URL}${profileData.photo}`
             : "",
           fullname: profileData.fullname || "",
         });

@@ -10,6 +10,7 @@ export default function PasswordSection() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const closePopup = () => {
     setIsPopupOpen(false);
@@ -34,7 +35,7 @@ export default function PasswordSection() {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/users/update-password", {
+    const response = await fetch(`${API_URL}/users/update-password`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -3,11 +3,13 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 const DetailsStep = ({ postData, setPostData, onNext, onBack, isEditing = false }) => {
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
   const file = postData.croppedMedia || postData.originalMedia;
 
   const previewUrl = isEditing
-    ? `http://localhost:5000${postData.media}` 
+    ? `${BASE_URL}${postData.media}` 
     : postData.croppedPreviewUrl || postData.previewUrl;
 
 
@@ -45,8 +47,8 @@ const DetailsStep = ({ postData, setPostData, onNext, onBack, isEditing = false 
 
     try {
       const url = isEditing
-        ? `http://localhost:5000/api/posts/${postData._id}` 
-        : "http://localhost:5000/api/posts"; 
+        ? `${API_URL}/posts/${postData._id}` 
+        : `${API_URL}/posts`; 
 
       const method = isEditing ? "PUT" : "POST";
 

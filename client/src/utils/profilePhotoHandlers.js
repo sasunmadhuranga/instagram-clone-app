@@ -1,10 +1,11 @@
 import { toast } from "react-toastify";
+const API_URL = process.env.REACT_APP_API_URL;
 export const uploadProfilePhoto = async (file, token, setForm, closeModal) => {
   const formData = new FormData();
   formData.append("photo", file);
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/upload-photo", {
+    const res = await fetch(`${API_URL}/users/upload-photo`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -13,8 +14,8 @@ export const uploadProfilePhoto = async (file, token, setForm, closeModal) => {
     const data = await res.json();
 
     if (res.ok) {
-      const baseUrl = "http://localhost:5000";
-      const updatedPhoto = baseUrl + data.photo;
+      const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
+      const updatedPhoto = BASE_URL + data.photo;
 
       setForm((prev) => ({
         ...prev,
@@ -39,7 +40,7 @@ export const uploadProfilePhoto = async (file, token, setForm, closeModal) => {
 
 export const removeProfilePhoto = async (token, setForm, closeModal) => {
   try {
-    const res = await fetch("http://localhost:5000/api/users/remove-photo", {
+    const res = await fetch(`${API_URL}/users/remove-photo`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

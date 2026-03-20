@@ -4,6 +4,8 @@ import CommentPopup from "../Comments/CommentPopup";
 const PostGrid = ({ posts: initialPosts, onSaveToggle }) => {
   const [posts, setPosts] = useState(initialPosts);
   const [selectedPost, setSelectedPost] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
   useEffect(() => {
     setPosts(initialPosts);
@@ -24,14 +26,10 @@ const PostGrid = ({ posts: initialPosts, onSaveToggle }) => {
   const getMediaUrl = (post) => {
     if (post.mediaUrl) return post.mediaUrl;
     if (post.media?.startsWith("http")) return post.media;
-    if (post.media?.startsWith("/")) return `http://localhost:5000${post.media}`;
+    if (post.media?.startsWith("/")) return `${BASE_URL}${post.media}`;
     return "";
   };
 
-  /*const handleSaveToggle = async (postId) => {
-    const updatedPost = await onSaveToggle(postId);
-    if (updatedPost) handlePostUpdate(updatedPost);
-  };*/
 
   return (
     <>

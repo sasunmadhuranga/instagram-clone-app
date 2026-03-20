@@ -18,6 +18,8 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
   const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState(post);
   const mediaSrc = post.mediaUrl || post.media;
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
   const handleEmojiSelect = (emoji) => {
     setCommentText((prev) => prev + emoji);
@@ -28,7 +30,7 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
     e.preventDefault();
     if (!commentText.trim()) return;
 
-    const res = await fetch(`http://localhost:5000/api/posts/comment/${post._id}`, {
+    const res = await fetch(`${API_URL}/posts/comment/${post._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +51,7 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
 
   const handleDeleteComment = async (commentId) => {
     const res = await fetch(
-      `http://localhost:5000/api/posts/${post._id}/comment/${commentId}`,
+      `${API_URL}/posts/${post._id}/comment/${commentId}`,
       {
         method: "DELETE",
         headers: {
@@ -70,7 +72,7 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+      await axios.delete(`${API_URL}/posts/${post._id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       onPostDelete?.(post._id);
@@ -117,7 +119,7 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
       formData.append("hideLikes", postData.advanced?.hideLikes || false);
       formData.append("disableComments", postData.advanced?.disableComments || false);
 
-      const res = await fetch(`http://localhost:5000/api/posts/${postData._id}`, {
+      const res = await fetch(`${API_URL}/posts/${postData._id}`, {
         method: "PUT",  
         headers: {
           Authorization: `Bearer ${token}`,
@@ -130,7 +132,7 @@ const CommentPopup = ({ post, onClose, onLikeToggle, onSaveToggle, onCommentAdde
       if (res.ok) {
         const fullMediaUrl = data.media?.startsWith("http")
           ? data.media
-          : `http://localhost:5000${data.media}`;
+          : `${BASE_URL}${data.media}`;
 
         const updatedPost = {
           ...data,

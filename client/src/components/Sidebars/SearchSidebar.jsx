@@ -6,8 +6,8 @@ const SearchSidebar = ({ onClose, visible }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [debounced, setDebounced] = useState(query);
+  const API_URL = process.env.REACT_APP_API_URL;
 
-  // Debounce the input
   useEffect(() => {
     const handler = setTimeout(() => setDebounced(query), 300);
     return () => clearTimeout(handler);
@@ -22,7 +22,7 @@ const SearchSidebar = ({ onClose, visible }) => {
 
       try {
         const token = JSON.parse(localStorage.getItem('user'))?.token;
-        const res = await fetch(`http://localhost:5000/api/users/search?q=${encodeURIComponent(debounced)}`, {
+        const res = await fetch(`${API_URL}/users/search?q=${encodeURIComponent(debounced)}`, {
             headers: { Authorization: `Bearer ${token}` }
             });
 

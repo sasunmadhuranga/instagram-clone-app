@@ -7,17 +7,16 @@ import UserInfoCard from "../components/UserInfoCard";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [feedPosts, setFeedPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-  
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchFeed = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
-      const res = await fetch("http://localhost:5000/api/posts/feed", {
+      const res = await fetch(`${API_URL}/posts/feed`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -32,7 +31,7 @@ const Feed = () => {
   }, []);
 
   const handleToggleLike = async (postId) => {
-    const res = await fetch(`http://localhost:5000/api/posts/like/${postId}`, {
+    const res = await fetch(`${API_URL}/posts/like/${postId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -79,7 +78,7 @@ const Feed = () => {
   };
 
   const handleToggleSave = async (postId) => {
-    const res = await fetch(`http://localhost:5000/api/posts/save/${postId}`, {
+    const res = await fetch(`${API_URL}/posts/save/${postId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${user.token}`,

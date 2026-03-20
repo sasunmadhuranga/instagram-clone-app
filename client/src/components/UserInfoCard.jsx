@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
 const UserInfoCard = ({ user, location }) => {
-  const baseUrl = 'http://localhost:5000'; 
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", ""); 
 
   const photoUrl = user.photo
     ? user.photo.startsWith('http') 
       ? user.photo 
-      : `${baseUrl}${user.photo}`
+      : `${BASE_URL}${user.photo}`
     : null;
 
   return (

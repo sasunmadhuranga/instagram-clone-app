@@ -13,6 +13,8 @@ export default function ProfileSection() {
   const [username, setUsername] = useState(user?.username || "");
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
   const [bio, setBio] = useState(user?.bio || "");
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
 
   const closePopup = () => {
@@ -26,7 +28,7 @@ export default function ProfileSection() {
 
   const handleSaveName = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/update-name", {
+      const res = await fetch(`${API_URL}/users/update-name`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +57,7 @@ export default function ProfileSection() {
 
   const handleSaveUsername = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/update-username", {
+      const res = await fetch(`${API_URL}/users/update-username`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +98,7 @@ export default function ProfileSection() {
   formData.append("photo", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/upload-photo", {
+      const res = await fetch(`${API_URL}/users/upload-photo`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,14 +113,13 @@ export default function ProfileSection() {
         return;
       }
 
-      const baseUrl = "http://localhost:5000";
       const updatedUser = {
         token,
         fullname: data.fullname || user.fullname,
         username: data.username || user.username,
         email: data.email || user.email,
         bio: data.bio || user.bio || "",
-        photo: baseUrl + data.photo,
+        photo: BASE_URL + data.photo,
       };
 
       localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -147,7 +148,7 @@ export default function ProfileSection() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/remove-photo", {
+      const res = await fetch(`${API_URL}/users/remove-photo`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -186,7 +187,7 @@ export default function ProfileSection() {
 
   const handleSaveBio = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/update-bio", {
+      const res = await fetch(`${API_URL}/users/update-bio`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

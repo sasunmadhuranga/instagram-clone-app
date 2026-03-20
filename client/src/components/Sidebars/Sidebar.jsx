@@ -61,7 +61,6 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      {/* Bottom Menu Icon and Dropdown */}
       <div className="relative">
         <button
           onClick={() => setShowDropdown(!showDropdown)}
@@ -92,7 +91,6 @@ const Sidebar = () => {
         )}
       </div>
 
-      {/* Modal or Pop-up */}
       {isCreatePostOpen && (
         <ModalPortal>
           <CreatePostModal onClose={closeCreatePost} />

@@ -5,6 +5,7 @@ import SuggestedUser from "../SuggestedUser";
 const RightSidebar = () => {
   const [suggestedUsers, setSuggestedUsers] = useState([]);
   const [token, setToken] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +20,7 @@ const RightSidebar = () => {
 
     const fetchSuggestions = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users/suggested", {
+        const res = await fetch(`${API_URL}/users/suggested`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -34,7 +35,7 @@ const RightSidebar = () => {
     fetchSuggestions();
   }, []);
 
-  // Handler to update suggestedUsers state when a user is followed/unfollowed
+  
   const handleFollowToggle = (userId, isFollowing) => {
     setSuggestedUsers(prevUsers =>
       prevUsers.map(user =>
@@ -56,7 +57,7 @@ const RightSidebar = () => {
             key={u._id}
             user={u}
             currentUserToken={token}
-            onFollowToggle={handleFollowToggle}  // pass the handler here
+            onFollowToggle={handleFollowToggle}  
           />
         ))}
       </div>

@@ -7,6 +7,7 @@ const Login = () =>{
     const [message, setMessage] = useState(null);
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleChange = (e) =>setForm({...form, [e.target.name]: e.target.value});
 
@@ -19,7 +20,7 @@ const Login = () =>{
             }
         
         try{
-            const res = await fetch("http://localhost:5000/api/auth/login",{
+            const res = await fetch(`${API_URL}/auth/login`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(form),

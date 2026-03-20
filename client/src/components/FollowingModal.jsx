@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 const FollowingModal = ({ following, onClose, onUnfollow, onFollow }) => {
   const [loadingUserId, setLoadingUserId] = useState(null);
   const [users, setUsers] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
   useEffect(() => {
     const prepared = following.map((user) => ({
@@ -76,7 +78,7 @@ const FollowingModal = ({ following, onClose, onUnfollow, onFollow }) => {
                         user.photo?.startsWith("http")
                           ? user.photo
                           : user.photo
-                          ? `http://localhost:5000${user.photo}`
+                          ? `${BASE_URL}${user.photo}`
                           : "/default-avatar.png"
                       }
                       alt={user.username}

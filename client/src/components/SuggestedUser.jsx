@@ -6,13 +6,15 @@ function SuggestedUser({ user, currentUserToken, onFollowToggle }) {
   const [isFollowing, setIsFollowing] = useState(user.isFollowing || false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = API_URL.replace("/api", "");
 
   const toggleFollow = async () => {
     setLoading(true);
     try {
       const url = isFollowing
-        ? `http://localhost:5000/api/users/unfollow/${user._id}`
-        : `http://localhost:5000/api/users/follow/${user._id}`;
+        ? `${API_URL}/users/unfollow/${user._id}`
+        : `${API_URL}/users/follow/${user._id}`;
 
       await axios.put(url, {}, {
         headers: {
