@@ -1,37 +1,26 @@
-📸 Instagram Clone – Full-Stack Social Media App (MERN + Tailwind CSS)
+A full-stack, responsive social media platform built using the MERN stack and Tailwind CSS. It replicates core Instagram functionality, providing an interactive and scalable user experience across devices.
 
-A full-featured Instagram-like social media platform built using the MERN Stack (MongoDB, Express.js, React, Node.js) and Tailwind CSS, offering a clean, responsive user interface and real-time user interaction.
+✅ Authentication: Secure login, registration, and logout using JWT-based token authentication.
 
-✨ Features
-•	🔐 Authentication
-o	User registration, login, and logout
-o	Secure JWT-based authentication and authorization
+✅ Navigation: Intuitive routing between Home/Feed, Profile, and other core pages.
 
-•	🧭 Navigation
-o	Seamless routing between Home/Feed, Profile, Explore, and more
+✅ Search & Discovery: Find users, view their profiles, and follow/unfollow them.
 
-•	🔍 Search & Discovery
-o	Search for users
-o	View public profiles, post stats (likes/comments), and follow/unfollow them
+✅ Recommendations: Discover and follow recommended users via the right sidebar.
 
-•	🤝 Recommendations
-o	Suggested users to follow in the sidebar
+✅ Profile Management: Edit personal info, update profile picture, manage followers.
 
-•	👤 Profile Management
-o	Edit name, username, email, bio, birthday
-o	Change password and profile picture
-o	View/manage followers and following
+✅ Post Handling: Create posts with captions, locations, and interaction settings.
 
-•	📸 Post Handling
-o	Create new posts with captions and locations
-o	Optional: hide like count or disable comments
-o	Edit and delete own posts
+✅ Engagement: Like, comment, save, and manage posts and interactions.
 
-•	❤️ Engagement
-o	Like, comment, save posts
-o	Edit/delete comments on your own posts
+✅ Saved & Shared Posts: View/manage saved and shared content from your profile.
 
-•	🔖 Saved & Shared
-o	View saved and shared posts directly from profile
-Tech Stack
-React.js, Node.js, Express.js, MongoDB, Tailwind CSS
+Tools & Technologies:
+🟡 MongoDB
+🟡 Express.js
+🟡 React.js
+🟡 Node.js
+🟡 Tailwind CSS
+🟡 JWT
+🟡 REST APIs
