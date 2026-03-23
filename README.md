@@ -67,13 +67,15 @@ client/     → React frontend
 server/     → Express backend
 
 📸 Screenshots
-<p align=”center”>
-<img src=”screenshots/2.png” width=”600”/>
-<img src=”screenshots/3.png” width=”600”/>
-<img src=”screenshots/4.png” width=”600”/>
-<img src=”screenshots/5.png” width=”600”/>
+<p align="center">
+  <img src="screenshots/2.png" width="600"/>
+  <img src="screenshots/3.png" width="600"/>
+  <img src="screenshots/4.png" width="600"/>
+  <img src="screenshots/5.png" width="600"/>
 </p>
 
 Author
+
 Sasun Madhuranga
+
 GitHub: https://github.com/sasunmadhuranga
