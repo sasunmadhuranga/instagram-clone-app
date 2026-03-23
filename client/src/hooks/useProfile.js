@@ -88,7 +88,7 @@ const useProfile = (token, username) => {
     if (token) {
       loadProfileData();
     }
-  }, [token, username, isOwnProfile]);
+  }, [token, username, isOwnProfile, API_URL]);
 
   return {
     form,

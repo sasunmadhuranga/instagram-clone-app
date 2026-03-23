@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Sidebar from "../components/Sidebars/Sidebar";
 import ProfilePhotoModal from "../components/Profile/ProfilePhotoModal";
 import { useNavigate, useParams } from "react-router-dom";
@@ -39,27 +39,35 @@ const Profile = () => {
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [activeTab, setActiveTab] = useState("posts");
 
-  const fetchFollowersAndFollowing = async () => {
+  const fetchFollowersAndFollowing = useCallback(async () => {
     try {
-      const url = isOwnProfile ? `${API_URL}/users/me` : `${API_URL}/users/${username}`;
+      const url = isOwnProfile
+        ? `${API_URL}/users/me`
+        : `${API_URL}/users/${username}`;
+
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       if (!res.ok) throw new Error("Failed to fetch followers/following");
+
       const data = await res.json();
       setFollowersList(data.followers || []);
       setFollowingList(data.following || []);
-      
-      const loggedInUserFollows = data.followers.some(follower => follower.username === loggedInUsername);
+
+      const loggedInUserFollows = data.followers.some(
+        (follower) => follower.username === loggedInUsername
+      );
+
       setIsFollowing(loggedInUserFollows);
     } catch (err) {
       console.error("Failed to fetch followers and following", err);
     }
-  };
+  }, [API_URL, username, token, isOwnProfile, loggedInUsername]);
   
   useEffect(() => {
     fetchFollowersAndFollowing();
-  }, [username]);
+  }, [fetchFollowersAndFollowing]);
 
   const handleShowFollowers = () => {
     fetchFollowersAndFollowing();

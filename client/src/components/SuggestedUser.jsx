@@ -7,7 +7,6 @@ function SuggestedUser({ user, currentUserToken, onFollowToggle }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
-  const BASE_URL = API_URL.replace("/api", "");
 
   const toggleFollow = async () => {
     setLoading(true);

@@ -28,7 +28,7 @@ const Feed = () => {
     };
 
     fetchFeed();
-  }, []);
+  }, [API_URL]);
 
   const handleToggleLike = async (postId) => {
     const res = await fetch(`${API_URL}/posts/like/${postId}`, {

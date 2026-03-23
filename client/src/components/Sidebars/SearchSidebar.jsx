@@ -35,7 +35,7 @@ const SearchSidebar = ({ onClose, visible }) => {
     };
 
     fetchUsers();
-  }, [debounced]);
+  }, [debounced, API_URL]);
 
   return (
     <div className={`fixed top-0 left-0 h-screen bg-white w-[350px] shadow-lg transform transition-transform ${visible ? 'translate-x-0' : 'translate-x-full'}`}>
