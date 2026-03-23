@@ -12,7 +12,7 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
+const PORT = process.env.PORT || 5000;
 const app = express();  
 
 
@@ -32,12 +32,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("MongoDB connected"))
-.catch(err => {
-  console.error("MongoDB connection error:", err.message);
-  process.exit(1); 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
