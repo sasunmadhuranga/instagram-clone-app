@@ -33,7 +33,7 @@ const RightSidebar = () => {
     };
 
     fetchSuggestions();
-  }, []);
+  }, [API_URL]);
 
   
   const handleFollowToggle = (userId, isFollowing) => {
